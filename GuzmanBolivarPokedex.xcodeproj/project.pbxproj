@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A919866E2A453B3500DEC325 /* PokeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A919866D2A453B3500DEC325 /* PokeList.swift */; };
 		A91986702A453CF400DEC325 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A919866F2A453CF400DEC325 /* OnboardingView.swift */; };
 		A91986722A453D0000DEC325 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91986712A453D0000DEC325 /* ProfileView.swift */; };
+		A91986742A45529B00DEC325 /* PokeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91986732A45529B00DEC325 /* PokeList.swift */; };
 		A94A12402A3FC363007A203E /* GuzmanBolivarPokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */; };
 		A94A12422A3FC363007A203E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A12412A3FC363007A203E /* ContentView.swift */; };
 		A94A12442A3FC365007A203E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A94A12432A3FC365007A203E /* Assets.xcassets */; };
@@ -46,9 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A919866D2A453B3500DEC325 /* PokeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeList.swift; sourceTree = "<group>"; };
 		A919866F2A453CF400DEC325 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A91986712A453D0000DEC325 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A91986732A45529B00DEC325 /* PokeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeList.swift; sourceTree = "<group>"; };
 		A94A123C2A3FC363007A203E /* GuzmanBolivarPokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuzmanBolivarPokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuzmanBolivarPokedexApp.swift; sourceTree = "<group>"; };
 		A94A12412A3FC363007A203E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,8 +180,8 @@
 				A9728EC22A45207C00EF9315 /* LaunchScreen.storyboard */,
 				A94A12412A3FC363007A203E /* ContentView.swift */,
 				A919866F2A453CF400DEC325 /* OnboardingView.swift */,
+				A91986732A45529B00DEC325 /* PokeList.swift */,
 				A91986712A453D0000DEC325 /* ProfileView.swift */,
-				A919866D2A453B3500DEC325 /* PokeList.swift */,
 				A94A12752A4294A4007A203E /* PokeDetails.swift */,
 				A94A12732A425E79007A203E /* PokemonGrid.swift */,
 			);
@@ -352,11 +352,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A91986742A45529B00DEC325 /* PokeList.swift in Sources */,
 				A9728EBE2A43851100EF9315 /* PokemonEncounterVM.swift in Sources */,
 				A91986722A453D0000DEC325 /* ProfileView.swift in Sources */,
 				A9728EC02A43857B00EF9315 /* PokemonEncounter_Networking.swift in Sources */,
 				A94A12762A4294A4007A203E /* PokeDetails.swift in Sources */,
-				A919866E2A453B3500DEC325 /* PokeList.swift in Sources */,
 				A94A12422A3FC363007A203E /* ContentView.swift in Sources */,
 				A94A126B2A3FD8CD007A203E /* ContentView_Model.swift in Sources */,
 				A9728EBC2A4384A600EF9315 /* PokemonEncounter_Model.swift in Sources */,
