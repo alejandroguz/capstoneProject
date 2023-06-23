@@ -53,10 +53,10 @@ class Networking: ObservableObject {
 //    }
 //  }
 
-  func loadMoreContent(start with: Int, ending at: Int) {
+  func loadMoreContent(start with: Int, ending last: Int) {
     Task { @MainActor in
-      try? await self.getPokemonImg(start: with, end: at)
-      try? await self.getPokemonProfile(start: with, end: at)
+      try? await self.getPokemonImg(start: with, end: last)
+      try? await self.getPokemonProfile(start: with, end: last)
     }
     self.page += 1
     self.start += 11
@@ -187,7 +187,6 @@ class Networking: ObservableObject {
 
         Task { @MainActor in
           pokemonProfile.append(decodedData)
-//          try? await self.getPokemonImg(pokemon: decodedData)
         }
 
       } catch {
@@ -226,6 +225,5 @@ class Networking: ObservableObject {
         }
       }
     }
-
   }
 }

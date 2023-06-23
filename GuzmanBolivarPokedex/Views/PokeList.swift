@@ -22,7 +22,7 @@ struct PokeList: View {
           NavigationStack {
             ScrollView {
               LazyVGrid(columns: columns) {
-                ForEach(Array(viewModel.pokemonProfile.enumerated()), id: \.1.name) { itemIndex, item in
+                ForEach(Array(viewModel.pokemonProfile.enumerated()), id: \.1.id) { itemIndex, item in
 
                   NavigationLink {
                     PokeDetails(pokedex: item, sprites: item.sprites)
