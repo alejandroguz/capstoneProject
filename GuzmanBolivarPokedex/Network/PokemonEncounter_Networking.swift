@@ -63,10 +63,9 @@ class PokemonEncounterNetworking: ObservableObject {
   func getPokemonImages(url: Sprites) async throws -> [UIImage]? {
     let urlSessionConfig = URLSessionConfiguration.default
     let urlSession = URLSession(configuration: urlSessionConfig)
-    let decoder = JSONDecoder()
     var arrayOfPictures = [UIImage]()
 
-    var arrayOfUrls =
+    let arrayOfUrls =
     [
       url.backDefault,
       url.frontDefault,

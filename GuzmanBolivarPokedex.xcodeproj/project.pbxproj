@@ -10,6 +10,8 @@
 		A91986702A453CF400DEC325 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A919866F2A453CF400DEC325 /* OnboardingView.swift */; };
 		A91986722A453D0000DEC325 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91986712A453D0000DEC325 /* ProfileView.swift */; };
 		A91986742A45529B00DEC325 /* PokeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91986732A45529B00DEC325 /* PokeList.swift */; };
+		A91986762A4567DE00DEC325 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91986752A4567DE00DEC325 /* NetworkMonitor.swift */; };
+		A91986782A45690800DEC325 /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91986772A45690800DEC325 /* NoNetworkView.swift */; };
 		A94A12402A3FC363007A203E /* GuzmanBolivarPokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */; };
 		A94A12422A3FC363007A203E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A12412A3FC363007A203E /* ContentView.swift */; };
 		A94A12442A3FC365007A203E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A94A12432A3FC365007A203E /* Assets.xcassets */; };
@@ -49,6 +51,8 @@
 		A919866F2A453CF400DEC325 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A91986712A453D0000DEC325 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A91986732A45529B00DEC325 /* PokeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeList.swift; sourceTree = "<group>"; };
+		A91986752A4567DE00DEC325 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		A91986772A45690800DEC325 /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
 		A94A123C2A3FC363007A203E /* GuzmanBolivarPokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuzmanBolivarPokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuzmanBolivarPokedexApp.swift; sourceTree = "<group>"; };
 		A94A12412A3FC363007A203E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 				A91986712A453D0000DEC325 /* ProfileView.swift */,
 				A94A12752A4294A4007A203E /* PokeDetails.swift */,
 				A94A12732A425E79007A203E /* PokemonGrid.swift */,
+				A91986772A45690800DEC325 /* NoNetworkView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 			children = (
 				A94A126C2A3FD8E8007A203E /* Networking.swift */,
 				A9728EBF2A43857B00EF9315 /* PokemonEncounter_Networking.swift */,
+				A91986752A4567DE00DEC325 /* NetworkMonitor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 			files = (
 				A91986742A45529B00DEC325 /* PokeList.swift in Sources */,
 				A9728EBE2A43851100EF9315 /* PokemonEncounterVM.swift in Sources */,
+				A91986782A45690800DEC325 /* NoNetworkView.swift in Sources */,
 				A91986722A453D0000DEC325 /* ProfileView.swift in Sources */,
 				A9728EC02A43857B00EF9315 /* PokemonEncounter_Networking.swift in Sources */,
 				A94A12762A4294A4007A203E /* PokeDetails.swift in Sources */,
@@ -365,6 +372,7 @@
 				A91986702A453CF400DEC325 /* OnboardingView.swift in Sources */,
 				A94A126F2A3FD8FC007A203E /* ContentViewVM.swift in Sources */,
 				A94A126D2A3FD8E8007A203E /* Networking.swift in Sources */,
+				A91986762A4567DE00DEC325 /* NetworkMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

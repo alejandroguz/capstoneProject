@@ -40,9 +40,3 @@ struct PokemonGrid: View {
     .cornerRadius(10)
   }
 }
-
-//struct PokemonGrid_Previews: PreviewProvider {
-//  static var previews: some View {
-//    PokemonGrid()
-//  }
-//}

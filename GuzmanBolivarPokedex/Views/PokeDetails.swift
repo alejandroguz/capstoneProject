@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PokeDetails: View {
+  @EnvironmentObject var networkMonitor: NetworkMonitor
   var pokemonEncounterVM = PokemonEncounterVM().network
   var pokedex: Pokedex?
   var sprites: Sprites?
@@ -18,50 +19,54 @@ struct PokeDetails: View {
   @State var arrayOfPics: [UIImage]?
 
   var body: some View {
-    VStack {
-      HStack {
-        if arrayOfPics != nil {
-          if let array = arrayOfPics {
-            ForEach(array, id: \.cgImage) { img in
-              Image(uiImage: img)
+    if networkMonitor.isConnected {
+      VStack {
+        HStack {
+          if arrayOfPics != nil {
+            if let array = arrayOfPics {
+              ForEach(array, id: \.cgImage) { img in
+                Image(uiImage: img)
+              }
+            }
+          } else {
+            VStack {
+              ProgressView()
+              Text("Loading Data....")
+                .font(.subheadline)
             }
           }
-        } else {
-          VStack {
-            ProgressView()
-            Text("Loading Data....")
-              .font(.subheadline)
+
+        }
+
+        List {
+          Section("Pokemon Data") {
+            Text("Base Experience: \(pokedex?.baseExperience ?? 1)")
+            Text("Height: \(pokedex?.height ?? 1)")
+            Text(encounters ?? "No location")
+            Text("Maximum Chance of Encounter: \(chance ?? 0)")
+            Text("Max Level: \(maxLevel ?? 0)")
+            Text("Min Level: \(minLevel ?? 0)")
           }
         }
-
       }
-
-      List {
-        Section("Pokemon Data") {
-          Text("Base Experience: \(pokedex?.baseExperience ?? 1)")
-          Text("Height: \(pokedex?.height ?? 1)")
-          Text(encounters ?? "No location")
-          Text("Maximum Chance of Encounter: \(chance ?? 0)")
-          Text("Max Level: \(maxLevel ?? 0)")
-          Text("Min Level: \(minLevel ?? 0)")
+      .navigationTitle(Text("\(pokedex?.name.uppercased() ?? "")"))
+      .onAppear {
+        Task { @MainActor in
+          if let data = try? await pokemonEncounterVM.getPokemonEncounterInfo(
+            url: pokedex?.locationAreaEncounters ?? ""
+          ) {
+            encounters = data.first?.locationArea.name
+            chance = data.first?.versionDetails.first?.encounterDetails.first?.chance
+            minLevel = data.first?.versionDetails.first?.encounterDetails.first?.minLevel
+            maxLevel = data.first?.versionDetails.first?.encounterDetails.first?.maxLevel
+          }
+          if let pokePictures = sprites {
+            arrayOfPics = try? await pokemonEncounterVM.getPokemonImages(url: pokePictures)
+          }
         }
       }
-    }
-    .navigationTitle(Text("\(pokedex?.name.uppercased() ?? "")"))
-    .onAppear {
-      Task { @MainActor in
-        if let data = try? await pokemonEncounterVM.getPokemonEncounterInfo(
-          url: pokedex?.locationAreaEncounters ?? ""
-        ) {
-          encounters = data.first?.locationArea.name
-          chance = data.first?.versionDetails.first?.encounterDetails.first?.chance
-          minLevel = data.first?.versionDetails.first?.encounterDetails.first?.minLevel
-          maxLevel = data.first?.versionDetails.first?.encounterDetails.first?.maxLevel
-        }
-        if let pokePictures = sprites {
-          arrayOfPics = try? await pokemonEncounterVM.getPokemonImages(url: pokePictures)
-        }
-      }
+    } else {
+      NoNetworkView()
     }
   }
 }
