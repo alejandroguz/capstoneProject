@@ -12,6 +12,8 @@
 		A91986742A45529B00DEC325 /* PokeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91986732A45529B00DEC325 /* PokeList.swift */; };
 		A91986762A4567DE00DEC325 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91986752A4567DE00DEC325 /* NetworkMonitor.swift */; };
 		A91986782A45690800DEC325 /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91986772A45690800DEC325 /* NoNetworkView.swift */; };
+		A919867C2A45CAE500DEC325 /* ProfileViewNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A919867B2A45CAE500DEC325 /* ProfileViewNetworking.swift */; };
+		A919867E2A45CAFE00DEC325 /* ProfileViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A919867D2A45CAFE00DEC325 /* ProfileViewVM.swift */; };
 		A94A12402A3FC363007A203E /* GuzmanBolivarPokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */; };
 		A94A12422A3FC363007A203E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A12412A3FC363007A203E /* ContentView.swift */; };
 		A94A12442A3FC365007A203E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A94A12432A3FC365007A203E /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		A91986732A45529B00DEC325 /* PokeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeList.swift; sourceTree = "<group>"; };
 		A91986752A4567DE00DEC325 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		A91986772A45690800DEC325 /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
+		A919867B2A45CAE500DEC325 /* ProfileViewNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewNetworking.swift; sourceTree = "<group>"; };
+		A919867D2A45CAFE00DEC325 /* ProfileViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewVM.swift; sourceTree = "<group>"; };
 		A94A123C2A3FC363007A203E /* GuzmanBolivarPokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuzmanBolivarPokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuzmanBolivarPokedexApp.swift; sourceTree = "<group>"; };
 		A94A12412A3FC363007A203E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			children = (
 				A94A126E2A3FD8FC007A203E /* ContentViewVM.swift */,
 				A9728EBD2A43851100EF9315 /* PokemonEncounterVM.swift */,
+				A919867D2A45CAFE00DEC325 /* ProfileViewVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -185,8 +190,8 @@
 				A94A12412A3FC363007A203E /* ContentView.swift */,
 				A919866F2A453CF400DEC325 /* OnboardingView.swift */,
 				A91986732A45529B00DEC325 /* PokeList.swift */,
-				A91986712A453D0000DEC325 /* ProfileView.swift */,
 				A94A12752A4294A4007A203E /* PokeDetails.swift */,
+				A91986712A453D0000DEC325 /* ProfileView.swift */,
 				A94A12732A425E79007A203E /* PokemonGrid.swift */,
 				A91986772A45690800DEC325 /* NoNetworkView.swift */,
 			);
@@ -199,6 +204,7 @@
 				A94A126C2A3FD8E8007A203E /* Networking.swift */,
 				A9728EBF2A43857B00EF9315 /* PokemonEncounter_Networking.swift */,
 				A91986752A4567DE00DEC325 /* NetworkMonitor.swift */,
+				A919867B2A45CAE500DEC325 /* ProfileViewNetworking.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -369,6 +375,8 @@
 				A9728EBC2A4384A600EF9315 /* PokemonEncounter_Model.swift in Sources */,
 				A94A12402A3FC363007A203E /* GuzmanBolivarPokedexApp.swift in Sources */,
 				A94A12742A425E79007A203E /* PokemonGrid.swift in Sources */,
+				A919867C2A45CAE500DEC325 /* ProfileViewNetworking.swift in Sources */,
+				A919867E2A45CAFE00DEC325 /* ProfileViewVM.swift in Sources */,
 				A91986702A453CF400DEC325 /* OnboardingView.swift in Sources */,
 				A94A126F2A3FD8FC007A203E /* ContentViewVM.swift in Sources */,
 				A94A126D2A3FD8E8007A203E /* Networking.swift in Sources */,
@@ -535,6 +543,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuzmanBolivarPokedex/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PokeApp;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -566,6 +575,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuzmanBolivarPokedex/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PokeApp;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;

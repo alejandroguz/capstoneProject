@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct PokeDetails: View {
-  @EnvironmentObject var networkMonitor: NetworkMonitor
+struct PokeDetailss: View {
   var pokemonEncounterVM = PokemonEncounterVM().network
+  @EnvironmentObject var networkMonitor: NetworkMonitor
   var pokedex: Pokedex?
   var sprites: Sprites?
   @State var encounters: String?
@@ -35,7 +35,6 @@ struct PokeDetails: View {
                 .font(.subheadline)
             }
           }
-
         }
 
         List {

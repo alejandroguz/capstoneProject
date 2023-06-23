@@ -25,7 +25,7 @@ struct PokeList: View {
                 ForEach(Array(viewModel.pokemonProfile.enumerated()), id: \.1.id) { itemIndex, item in
 
                   NavigationLink {
-                    PokeDetails(pokedex: item, sprites: item.sprites)
+                    PokeDetailss(pokedex: item, sprites: item.sprites)
                   } label: {
                     PokemonGrid(img: viewModel.pokeIMG[itemIndex],
                                 name: item.name,
