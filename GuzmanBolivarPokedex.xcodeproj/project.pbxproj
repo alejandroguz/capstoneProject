@@ -22,6 +22,7 @@
 		A9728EBC2A4384A600EF9315 /* PokemonEncounter_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9728EBB2A4384A600EF9315 /* PokemonEncounter_Model.swift */; };
 		A9728EBE2A43851100EF9315 /* PokemonEncounterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9728EBD2A43851100EF9315 /* PokemonEncounterVM.swift */; };
 		A9728EC02A43857B00EF9315 /* PokemonEncounter_Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9728EBF2A43857B00EF9315 /* PokemonEncounter_Networking.swift */; };
+		A9728EC32A45207C00EF9315 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9728EC22A45207C00EF9315 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		A9728EBB2A4384A600EF9315 /* PokemonEncounter_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonEncounter_Model.swift; sourceTree = "<group>"; };
 		A9728EBD2A43851100EF9315 /* PokemonEncounterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonEncounterVM.swift; sourceTree = "<group>"; };
 		A9728EBF2A43857B00EF9315 /* PokemonEncounter_Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonEncounter_Networking.swift; sourceTree = "<group>"; };
+		A9728EC22A45207C00EF9315 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A9728EC42A4520ED00EF9315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,7 @@
 		A94A123E2A3FC363007A203E /* GuzmanBolivarPokedex */ = {
 			isa = PBXGroup;
 			children = (
+				A9728EC42A4520ED00EF9315 /* Info.plist */,
 				A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */,
 				A94A12722A3FD94E007A203E /* Views */,
 				A94A12702A3FD917007A203E /* ViewModels */,
@@ -167,6 +171,7 @@
 		A94A12722A3FD94E007A203E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A9728EC22A45207C00EF9315 /* LaunchScreen.storyboard */,
 				A94A12412A3FC363007A203E /* ContentView.swift */,
 				A94A12752A4294A4007A203E /* PokemonDetails.swift */,
 				A94A12732A425E79007A203E /* PokemonGrid.swift */,
@@ -288,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9728EC32A45207C00EF9315 /* LaunchScreen.storyboard in Resources */,
 				A94A12472A3FC365007A203E /* Preview Assets.xcassets in Resources */,
 				A94A12442A3FC365007A203E /* Assets.xcassets in Resources */,
 			);
@@ -508,9 +514,10 @@
 				DEVELOPMENT_TEAM = SFVP5ZLTML;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GuzmanBolivarPokedex/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -538,9 +545,10 @@
 				DEVELOPMENT_TEAM = SFVP5ZLTML;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GuzmanBolivarPokedex/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
