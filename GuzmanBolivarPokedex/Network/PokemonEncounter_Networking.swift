@@ -9,7 +9,23 @@ import Foundation
 import UIKit
 
 class PokemonEncounterNetworking: ObservableObject {
-  
+
+  enum NetworkError: Error {
+    case decodingError
+    case failHttpRequest(message: String)
+    case retrieveDataError
+  }
+
+  func handleError(_ error: NetworkError) {
+    switch error {
+    case .failHttpRequest(let message):
+      print("HTTP Request error: \(message)")
+    case .decodingError:
+      print("Decoding error.")
+    case .retrieveDataError:
+      print("Unknown error. Couldn't get data.")
+    }
+  }
 
   func getPokemonEncounterInfo(url: String) async throws -> PokemonEncounter? {
     let urlSessionConfig = URLSessionConfiguration.default
@@ -25,21 +41,21 @@ class PokemonEncounterNetworking: ObservableObject {
 
       guard let response = urlResponse as? HTTPURLResponse,
             (200...299).contains(response.statusCode) else {
-        print("Failed HTTP Request")
+        handleError(.failHttpRequest(message: "A response error has occurred: getPokemonEncounterInfo"))
         return nil
       }
 
       print("\(response.statusCode)")
 
       guard let decodedData = try? decoder.decode(PokemonEncounter.self, from: data) else {
-        print("Couldn't decode the PokemonEncounter Data")
+        handleError(.decodingError)
         return nil
       }
 
       return decodedData
 
     } catch {
-      print("Failed the get data request")
+      handleError(.retrieveDataError)
       return nil
     }
   }
@@ -67,18 +83,16 @@ class PokemonEncounterNetworking: ObservableObject {
 
         guard let response = urlResponse as? HTTPURLResponse,
               (200...299).contains(response.statusCode) else {
-          print("Failed HTTP Request")
+          handleError(.failHttpRequest(message: "A response error has occurred: getPokemonImages"))
           return nil
         }
-
-        print("Pokemon img status code:\(response.statusCode)")
 
         if let img = UIImage(data: data) {
           arrayOfPictures.append(img)
         }
 
       } catch {
-        print("Failing with decodeing Pictures")
+        handleError(.retrieveDataError)
         return nil
       }
     }

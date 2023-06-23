@@ -16,6 +16,23 @@ class Networking: ObservableObject {
   var start = 11
   var end = 20
 
+  enum NetworkError: Error {
+    case decodingError
+    case failHttpRequest(message: String)
+    case retrieveDataError
+  }
+
+  func handleError(_ error: NetworkError) {
+    switch error {
+    case .failHttpRequest(let message):
+      print("HTTP Request error: \(message)")
+    case .decodingError:
+      print("Decoding error.")
+    case .retrieveDataError:
+      print("Unknown error. Couldn't get data.")
+    }
+  }
+
   init() {
     Task { @MainActor in
       guard let data = try? await getPokemonProfile() else { return }
@@ -46,6 +63,8 @@ class Networking: ObservableObject {
     self.end += 22
   }
 
+  // URLs FOR REQUESTS
+
   func getRequestURL(forPokemonNumber: Int) -> String {
     let baseURL = "https://pokeapi.co/api/v2/pokemon/"
     guard var urlComponents = URLComponents(string: baseURL) else { return "failed" }
@@ -66,7 +85,7 @@ class Networking: ObservableObject {
     return newURL
   }
 
- //MARK: First Call Functions
+ // INIT FUNCTIONS
 
   func getPokemonProfile() async throws -> [Pokedex]? {
     let urlSessionConfig = URLSessionConfiguration.default
@@ -75,7 +94,6 @@ class Networking: ObservableObject {
 
     for pokemonNumber in 1...10 {
       guard let pokemonURL = URL(string: getRequestURL(forPokemonNumber: pokemonNumber)) else { return [] }
-      print("This is the url Request string: \(pokemonURL.absoluteString)")
 
       let urlRequest = URLRequest(url: pokemonURL, cachePolicy: .returnCacheDataElseLoad)
 
@@ -84,29 +102,25 @@ class Networking: ObservableObject {
 
         guard let response = urlResponse as? HTTPURLResponse,
               (200...299).contains(response.statusCode) else {
-          print("Failed HTTP Request")
+          handleError(.failHttpRequest(message: "A response error has occurred: getPokemonProfile"))
           return []
         }
 
         guard let decodedData = try? decoder.decode(Pokedex.self, from: data) else {
-          print("Couldn't decode the data")
+          handleError(.decodingError)
           continue
         }
-        print("Data decoding successful")
+
         Task { @MainActor in
           pokemonProfile.append(decodedData)
         }
-      } catch {
-        print("Failed to retrieve data: \(error.localizedDescription)")
-        return []
-      }
+      } catch { return nil }
     }
 
     if !pokemonProfile.isEmpty {
-      print("Success")
       return pokemonProfile
     } else {
-      print("The pokemon profile is nil")
+      handleError(.retrieveDataError)
       return nil
     }
   }
@@ -127,7 +141,7 @@ class Networking: ObservableObject {
 
             guard let response = urlResponse as? HTTPURLResponse,
                   (200...299).contains(response.statusCode) else {
-              print("Failed HTTP Request")
+              handleError(.failHttpRequest(message: "A response error has occurred: getPokemonImg"))
               return nil
             }
 
@@ -136,7 +150,8 @@ class Networking: ObservableObject {
             }
 
           } catch {
-            print("Error downloading the image...")
+            handleError(.retrieveDataError)
+            return nil
           }
       }
     }
@@ -144,7 +159,7 @@ class Networking: ObservableObject {
     return pokemonIMG
   }
 
-  //MARK: - Pagination API Call System
+  // PAGINATION API FUNCTIONS
 
   func getPokemonProfile(start: Int, end: Int) async throws {
     let urlSessionConfig = URLSessionConfiguration.default
@@ -161,12 +176,12 @@ class Networking: ObservableObject {
 
         guard let response = urlResponse as? HTTPURLResponse,
               (200...299).contains(response.statusCode) else {
-          print("Failed HTTP Request")
+          handleError(.failHttpRequest(message: "A response error has occurred: getPokemonProfile"))
           return
         }
 
         guard let decodedData = try? decoder.decode(Pokedex.self, from: data) else {
-          print("Couldn't decode the data")
+          handleError(.decodingError)
           continue
         }
 
@@ -176,7 +191,7 @@ class Networking: ObservableObject {
         }
 
       } catch {
-        print("Failed to retrieve data: \(error.localizedDescription)")
+        handleError(.retrieveDataError)
         return
       }
     }
@@ -196,7 +211,7 @@ class Networking: ObservableObject {
 
           guard let response = urlResponse as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) else {
-            print("Failed HTTP Request")
+            handleError(.failHttpRequest(message: "A response error has occurred: getPokemonImg"))
             return
           }
 
@@ -207,7 +222,7 @@ class Networking: ObservableObject {
           }
 
         } catch {
-          print("Error downloading the image...")
+          handleError(.retrieveDataError)
         }
       }
     }
