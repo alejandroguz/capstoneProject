@@ -20,7 +20,8 @@ struct ContentView: View {
         NavigationStack {
           ScrollView {
             LazyVGrid(columns: columns) {
-              ForEach(Array(viewModel.pokemonProfile.enumerated()), id: \.1.id) { itemIndex, item in
+              ForEach(Array(viewModel.pokemonProfile.enumerated()), id: \.1.name) { itemIndex, item in
+
                 NavigationLink {
                   PokeDetails(pokedex: item, sprites: item.sprites)
                 } label: {
@@ -32,9 +33,18 @@ struct ContentView: View {
               }
             }
             Button {
-              viewModel.loadMoreContent()
+              if (viewModel.page + 1) <= viewModel.totalPages {
+                viewModel.loadMoreContent(
+                  start: viewModel.start,
+                  ending: viewModel.end
+                )
+              }
             } label: {
-              Text("Load more")
+              if (viewModel.page + 1) <= viewModel.totalPages {
+                Text("Load more")
+              } else {
+                Text("No more")
+              }
             }
 
           }
@@ -92,7 +102,9 @@ struct PokeDetails: View {
     .navigationTitle(Text("\(pokedex?.name.uppercased() ?? "")"))
     .onAppear {
       Task { @MainActor in
-        if let data = try? await pokemonEncounterVM.getPokemonEncounterInfo(url: pokedex?.locationAreaEncounters ?? "") {
+        if let data = try? await pokemonEncounterVM.getPokemonEncounterInfo(
+          url: pokedex?.locationAreaEncounters ?? ""
+        ) {
           encounters = data.first?.locationArea.name
           chance = data.first?.versionDetails.first?.encounterDetails.first?.chance
           minLevel = data.first?.versionDetails.first?.encounterDetails.first?.minLevel

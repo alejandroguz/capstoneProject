@@ -13,6 +13,8 @@ class Networking: ObservableObject {
   @Published var pokeIMG = [UIImage]()
   var totalPages = 6
   var page = 1
+  var start = 11
+  var end = 20
 
   init() {
     Task { @MainActor in
@@ -23,22 +25,25 @@ class Networking: ObservableObject {
     }
   }
 
-
-  func loadMoreContent(currentItem item: Int) {
-    let thresHoldIndex = self.pokemonProfile.index(self.pokemonProfile.endIndex, offsetBy: -1)
-    print("This is the thresholdIndex: \(thresHoldIndex)")
-    print("This is the item Index: \(item)")
-    if thresHoldIndex == item, (page + 1) <= totalPages {
-      Task { @MainActor in
+//  func loadMoreContent(currentItem item: Int) {
+//    let thresHoldIndex = self.pokemonProfile.index(self.pokemonProfile.endIndex, offsetBy: -1)
+//    print("This is the thresholdIndex: \(thresHoldIndex)")
+//    print("This is the item Index: \(item)")
+//    if thresHoldIndex == item, (page + 1) <= totalPages {
+//      Task { @MainActor in
 //        try? await self.getPokemonProfile(begin: 11, end: 12)
-      }
-    }
-  }
+//      }
+//    }
+//  }
 
-  func loadMoreContent() {
+  func loadMoreContent(start with: Int, ending at: Int) {
     Task { @MainActor in
-      try? await self.getPokemonProfile(start: 11, end: 21)
+      try? await self.getPokemonImg(start: with, end: at)
+      try? await self.getPokemonProfile(start: with, end: at)
     }
+    self.page += 1
+    self.start += 11
+    self.end += 22
   }
 
   func getRequestURL(forPokemonNumber: Int) -> String {
@@ -50,6 +55,18 @@ class Networking: ObservableObject {
     let newURL = urlComponents.url!.absoluteString.replacingOccurrences(of: "?", with: "")
     return newURL
   }
+
+  func getImgRequestURL(forPokemonNumber: Int) -> String {
+    let baseURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
+    guard var urlComponents = URLComponents(string: baseURL) else { return "failed" }
+    urlComponents.queryItems = [
+      URLQueryItem(name: String(forPokemonNumber) + ".png", value: nil)
+    ]
+    let newURL = urlComponents.url!.absoluteString.replacingOccurrences(of: "?", with: "")
+    return newURL
+  }
+
+ //MARK: First Call Functions
 
   func getPokemonProfile() async throws -> [Pokedex]? {
     let urlSessionConfig = URLSessionConfiguration.default
@@ -94,42 +111,6 @@ class Networking: ObservableObject {
     }
   }
 
-  func getPokemonProfile(start: Int, end: Int) async throws {
-    let urlSessionConfig = URLSessionConfiguration.default
-    let urlSession = URLSession(configuration: urlSessionConfig)
-    let decoder = JSONDecoder()
-
-    for pokemonNumber in start...end {
-      guard let pokemonURL = URL(string: getRequestURL(forPokemonNumber: pokemonNumber)) else { return }
-
-      let urlRequest = URLRequest(url: pokemonURL, cachePolicy: .returnCacheDataElseLoad)
-
-      do {
-        let (data, urlResponse) = try await urlSession.data(for: urlRequest)
-
-        guard let response = urlResponse as? HTTPURLResponse,
-              (200...299).contains(response.statusCode) else {
-          print("Failed HTTP Request")
-          return
-        }
-
-        guard let decodedData = try? decoder.decode(Pokedex.self, from: data) else {
-          print("Couldn't decode the data")
-          continue
-        }
-
-        Task { @MainActor in
-          try? await self.getPokemonImg(pokemon: decodedData)
-          pokemonProfile.append(decodedData)
-        }
-
-      } catch {
-        print("Failed to retrieve data: \(error.localizedDescription)")
-        return
-      }
-    }
-  }
-
   func getPokemonImg(pokemon: [Pokedex]) async throws -> [UIImage]? {
     let urlSessionConfig = URLSessionConfiguration.default
     urlSessionConfig.requestCachePolicy = .returnCacheDataElseLoad
@@ -163,13 +144,17 @@ class Networking: ObservableObject {
     return pokemonIMG
   }
 
-  func getPokemonImg(pokemon: Pokedex) async throws {
-    let urlSessionConfig = URLSessionConfiguration.default
-    urlSessionConfig.requestCachePolicy = .returnCacheDataElseLoad
-    let urlSession = URLSession(configuration: urlSessionConfig)
+  //MARK: - Pagination API Call System
 
-    if let pokemonIMGURL = URL(string: pokemon.sprites.frontDefault) {
-      let urlRequest = URLRequest(url: pokemonIMGURL, cachePolicy: .returnCacheDataElseLoad)
+  func getPokemonProfile(start: Int, end: Int) async throws {
+    let urlSessionConfig = URLSessionConfiguration.default
+    let urlSession = URLSession(configuration: urlSessionConfig)
+    let decoder = JSONDecoder()
+
+    for pokemonNumber in start...end {
+      guard let pokemonURL = URL(string: getRequestURL(forPokemonNumber: pokemonNumber)) else { return }
+
+      let urlRequest = URLRequest(url: pokemonURL, cachePolicy: .returnCacheDataElseLoad)
 
       do {
         let (data, urlResponse) = try await urlSession.data(for: urlRequest)
@@ -180,15 +165,52 @@ class Networking: ObservableObject {
           return
         }
 
-        if let image = UIImage(data: data) {
-          Task { @MainActor in
-            self.pokeIMG.append(image)
-          }
+        guard let decodedData = try? decoder.decode(Pokedex.self, from: data) else {
+          print("Couldn't decode the data")
+          continue
+        }
+
+        Task { @MainActor in
+          pokemonProfile.append(decodedData)
+//          try? await self.getPokemonImg(pokemon: decodedData)
         }
 
       } catch {
-        print("Error downloading the image...")
+        print("Failed to retrieve data: \(error.localizedDescription)")
+        return
       }
     }
+  }
+
+  func getPokemonImg(start: Int, end: Int) async throws {
+    let urlSessionConfig = URLSessionConfiguration.default
+    urlSessionConfig.requestCachePolicy = .returnCacheDataElseLoad
+    let urlSession = URLSession(configuration: urlSessionConfig)
+
+    for number in start...end {
+      if let pokemonIMGURL = URL(string: getImgRequestURL(forPokemonNumber: number)) {
+        let urlRequest = URLRequest(url: pokemonIMGURL, cachePolicy: .returnCacheDataElseLoad)
+
+        do {
+          let (data, urlResponse) = try await urlSession.data(for: urlRequest)
+
+          guard let response = urlResponse as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) else {
+            print("Failed HTTP Request")
+            return
+          }
+
+          if let image = UIImage(data: data) {
+            Task { @MainActor in
+              self.pokeIMG.append(image)
+            }
+          }
+
+        } catch {
+          print("Error downloading the image...")
+        }
+      }
+    }
+
   }
 }
