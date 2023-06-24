@@ -51,18 +51,6 @@ class ProfileViewNetworking: ObservableObject {
     return newURL
   }
 
-//  func checkSavedDataAvailable() -> Bool {
-//    let fileManager = FileManager.default
-//    let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first?.appending(path: "Pokemon")
-//    guard let filePath = path else {
-//      print("Error getting path.")
-//      return false
-//    }
-//    let boolean = fileManager.fileExists(atPath: filePath.path())
-//    print("Pokemon filepath: \(filePath.path())")
-//    return boolean
-//  }
-
   func savePokemon() {
     var number = 1
     let fileManager = FileManager.default
@@ -89,7 +77,7 @@ class ProfileViewNetworking: ObservableObject {
 
   func getPokemonFromFile() {
     let fileManager = FileManager.default
-    var path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+    let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
     for number in 1...6 {
       guard var url = path else { return }
       var pokemonPath = url.appending(path: "pokemon\(number)")
