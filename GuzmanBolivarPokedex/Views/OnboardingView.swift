@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+  @State private var isAnimated = false
   var body: some View {
     ZStack {
       Color("appColor").ignoresSafeArea()
@@ -24,11 +25,11 @@ struct OnboardingView: View {
               .padding(.bottom)
               .padding(.top)
             Text("The purpose of this app is to give you the closes experience to a real Pokedex.")
-            Text("- It allows you to see a list of the first 150 pokemons from the first pokemon generation.")
+            Text("- It allows you to see a list of the first 151 pokemons from the first pokemon generation.")
               .padding(.top, 5)
             Text("- Check the some details about each pokemon.")
               .padding(.top, 5)
-            Text("- Visualize a Pokemon Trainer Profile. (In the future you will be able to create your own profile.)")
+            Text("- Visualize a Pokemon Team. (In the future you will be able to create your own profile.)")
               .padding(.top, 5)
           }
           .multilineTextAlignment(.leading)
@@ -41,6 +42,19 @@ struct OnboardingView: View {
               )
           )
           .padding(.horizontal)
+
+          VStack {
+            Text("Look at some of the tabs below 👇😌")
+              .font(.headline)
+              .bold()
+          }
+          .frame(width: 200, height: 80)
+          .background(Color.cyan)
+          .scaleEffect( isAnimated ? 0.9: 0.8) // <3>
+          .animation(Animation.linear(duration: 1).repeatForever(), value: isAnimated)
+          .onAppear {
+            isAnimated = true
+          }
         }
       }
     }
