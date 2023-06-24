@@ -27,14 +27,23 @@ struct ProfileView: View {
           .cornerRadius(20)
           .padding(.top, 10)
 
-        Button {
-          viewModel.savePokemon(withFilename: "pokemon")
-        } label: {
-          if viewModel.save {
-            Text("Pokemon Saved")
-          } else {
-            Text("Save Pokemon!")
+        HStack {
+          Button {
+            viewModel.savePokemon()
+          } label: {
+            Image(systemName: "arrow.right.square")
+            Text("Save Pokemons!")
           }
+
+          Button {
+            Task { @MainActor in
+              try? await viewModel.fetchPokemonArtwork()
+            }
+          } label: {
+            Image(systemName: "dice")
+            Text("Reroll Pokemons!")
+          }
+
         }
 
         ScrollView {
@@ -50,6 +59,44 @@ struct ProfileView: View {
                        maxHeight: 120)
             }
           }
+
+          // Retrieved save pokemon data
+          if viewModel.savedArtwork.isEmpty {
+            Text(viewModel.pokemonsSavedMessage)
+              .foregroundColor(.white)
+              .font(.headline)
+              .padding()
+              .background(
+                Rectangle()
+                  .fill(viewModel.color)
+              )
+              .cornerRadius(20)
+              .padding(.top, 10)
+          } else {
+            Text("Here are your saved Pokemons!")
+              .foregroundColor(.white)
+              .font(.headline)
+              .padding()
+              .background(
+                Rectangle()
+                  .fill(Color.blue)
+              )
+              .cornerRadius(20)
+              .padding(.top, 10)
+
+            LazyVGrid(columns: columns) {
+              ForEach(viewModel.savedArtwork, id: \.cgImage) { item in
+                Image(uiImage: item)
+                  .resizable()
+                  .frame(minWidth: 120,
+                         idealWidth: 120,
+                         maxWidth: 120,
+                         minHeight: 120,
+                         idealHeight: 120,
+                         maxHeight: 120)
+              }
+            }
+          }
         }
       } else {
         ProgressView()
@@ -57,11 +104,12 @@ struct ProfileView: View {
       }
     }
     .onAppear {
-      if viewModel.artwork.isEmpty, viewModel.save == false {
+      if viewModel.artwork.isEmpty {
         Task { @MainActor in
           try? await viewModel.fetchPokemonArtwork()
         }
       }
+      viewModel.getPokemonFromFile()
     }
   }
 }

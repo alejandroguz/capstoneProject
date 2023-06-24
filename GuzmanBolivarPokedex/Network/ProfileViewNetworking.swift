@@ -10,7 +10,9 @@ import SwiftUI
 
 class ProfileViewNetworking: ObservableObject {
   @Published var artwork = [UIImage]()
-  @Published var save = false
+  @Published var savedArtwork = [UIImage]()
+  @Published var pokemonsSavedMessage = "There are no Pokemons saved."
+  @Published var color = Color.red
 
   enum NetworkError: Error {
     case decodingError
@@ -35,10 +37,6 @@ class ProfileViewNetworking: ObservableObject {
     }
   }
 
-  init() {
-    savePokemon(withFilename: "Pokemon")
-  }
-
   func getArtworkRequestURL(forPokemonNumber: Int) -> String {
     let baseURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/"
     guard var urlComponents = URLComponents(string: baseURL) else { return "failed" }
@@ -53,39 +51,67 @@ class ProfileViewNetworking: ObservableObject {
     return newURL
   }
 
-  func savePokemon(withFilename filename: String) {
+//  func checkSavedDataAvailable() -> Bool {
+//    let fileManager = FileManager.default
+//    let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first?.appending(path: "Pokemon")
+//    guard let filePath = path else {
+//      print("Error getting path.")
+//      return false
+//    }
+//    let boolean = fileManager.fileExists(atPath: filePath.path())
+//    print("Pokemon filepath: \(filePath.path())")
+//    return boolean
+//  }
+
+  func savePokemon() {
+    var number = 1
     let fileManager = FileManager.default
     let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-    print("This is the path:\(path)")
-    if let fileURL = path?.appending(path: filename) {
+
+    if let fileURL = path?.appending(path: "pokemon") {
       print("FileURL: \(fileURL)")
-      for pokemon in artwork {
-        do {
-          guard let data = pokemon.pngData() else { return }
-          try data.write(to: fileURL)
-          print("Success saving data!")
-          self.save = true
-        } catch {
-          handleError(.errorSavingData(message: error.localizedDescription))
-        }
-      }
     } else { return }
+
+    for pokemon in artwork {
+      guard let fileURL = path?.appending(path: "pokemon\(number)") else { return }
+      do {
+        guard let data = pokemon.pngData() else { return }
+        try data.write(to: fileURL)
+        print("Success saving data!")
+        number += 1
+        pokemonsSavedMessage = "Pokemons were saved!"
+        color = Color.green
+      } catch {
+        handleError(.errorSavingData(message: error.localizedDescription))
+      }
+    }
   }
 
-  func getPokemonFromFile(_ stringURL: String) -> Data? {
-    guard let url = URL(string: stringURL) else { return nil }
-    do {
-      let data = try Data(contentsOf: url)
-      return data
-    } catch {
-      handleError(.errorReadingData(message: error.localizedDescription))
-      return nil
+  func getPokemonFromFile() {
+    let fileManager = FileManager.default
+    var path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+    for number in 1...6 {
+      guard var url = path else { return }
+      var pokemonPath = url.appending(path: "pokemon\(number)")
+      do {
+        let data = try Data(contentsOf: pokemonPath)
+        if let img = UIImage(data: data) {
+          savedArtwork.append(img)
+        } else { return }
+      } catch {
+        handleError(.errorReadingData(message: error.localizedDescription))
+        return
+      }
     }
   }
 
   func fetchPokemonArtwork() async throws -> UIImage? {
     let urlSessionConfig = URLSessionConfiguration.default
     let urlSession = URLSession(configuration: urlSessionConfig)
+
+    Task { @MainActor in
+      artwork = []
+    }
 
     for _ in 1...6 {
       let randomNumber = Int.random(in: 1...151)
