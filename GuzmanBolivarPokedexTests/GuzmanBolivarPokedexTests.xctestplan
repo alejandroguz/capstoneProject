@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "7E244EFB-0ADE-47FD-BF7D-0F554DA4E7BA",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:GuzmanBolivarPokedex.xcodeproj",
+        "identifier" : "A94A124B2A3FC365007A203E",
+        "name" : "GuzmanBolivarPokedexTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:GuzmanBolivarPokedex.xcodeproj",
+        "identifier" : "A94A12552A3FC365007A203E",
+        "name" : "GuzmanBolivarPokedexUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

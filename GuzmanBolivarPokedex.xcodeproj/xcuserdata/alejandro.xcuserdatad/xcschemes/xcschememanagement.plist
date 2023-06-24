@@ -7,7 +7,35 @@
 		<key>GuzmanBolivarPokedex.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>GuzmanBolivarPokedexUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>UnitTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A94A123B2A3FC363007A203E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A94A124B2A3FC365007A203E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A94A12552A3FC365007A203E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

@@ -57,6 +57,7 @@
 		A91986772A45690800DEC325 /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
 		A919867B2A45CAE500DEC325 /* ProfileViewNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewNetworking.swift; sourceTree = "<group>"; };
 		A919867D2A45CAFE00DEC325 /* ProfileViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewVM.swift; sourceTree = "<group>"; };
+		A919867F2A46828D00DEC325 /* GuzmanBolivarPokedexTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = GuzmanBolivarPokedexTests.xctestplan; path = GuzmanBolivarPokedexTests/GuzmanBolivarPokedexTests.xctestplan; sourceTree = "<group>"; };
 		A94A123C2A3FC363007A203E /* GuzmanBolivarPokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuzmanBolivarPokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuzmanBolivarPokedexApp.swift; sourceTree = "<group>"; };
 		A94A12412A3FC363007A203E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 		A94A12332A3FC363007A203E = {
 			isa = PBXGroup;
 			children = (
+				A919867F2A46828D00DEC325 /* GuzmanBolivarPokedexTests.xctestplan */,
 				A94A123E2A3FC363007A203E /* GuzmanBolivarPokedex */,
 				A94A124F2A3FC365007A203E /* GuzmanBolivarPokedexTests */,
 				A94A12592A3FC365007A203E /* GuzmanBolivarPokedexUITests */,
