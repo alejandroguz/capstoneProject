@@ -79,8 +79,8 @@ class ProfileViewNetworking: ObservableObject {
     let fileManager = FileManager.default
     let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
     for number in 1...6 {
-      guard var url = path else { return }
-      var pokemonPath = url.appending(path: "pokemon\(number)")
+      guard let url = path else { return }
+      let pokemonPath = url.appending(path: "pokemon\(number)")
       do {
         let data = try Data(contentsOf: pokemonPath)
         if let img = UIImage(data: data) {

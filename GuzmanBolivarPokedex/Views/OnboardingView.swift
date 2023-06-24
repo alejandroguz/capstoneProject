@@ -30,6 +30,7 @@ struct OnboardingView: View {
             Text("- Check the some details about each pokemon.")
               .padding(.top, 5)
             Text("- Visualize a Pokemon Team. (In the future you will be able to create your own profile.)")
+            Text("You can save your Pokemons, but you will need to open and close the app to see your saved pokemons.")
               .padding(.top, 5)
           }
           .multilineTextAlignment(.leading)
