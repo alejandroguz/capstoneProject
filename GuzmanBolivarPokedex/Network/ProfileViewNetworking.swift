@@ -55,6 +55,7 @@ class ProfileViewNetworking: ObservableObject {
     var number = 1
     let fileManager = FileManager.default
     let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+    print("This is the saving's path: \(path)")
 
     if let fileURL = path?.appending(path: "pokemon") {
       print("FileURL: \(fileURL)")
