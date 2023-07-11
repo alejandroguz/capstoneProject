@@ -13,7 +13,8 @@ struct GuzmanBolivarPokedexApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SplashScreen()
+//            SplashScreen()
+          CustomNavBar()
             .environmentObject(networkMonitor)
         }
     }
