@@ -27,7 +27,17 @@ struct SplashScreen: View {
           }
         }
     } else if show == false {
-      PokeList()
+      TabView {
+        PokeList()
+          .tabItem {
+            Label("List", systemImage: "list.bullet.rectangle.portrait")
+          }
+
+        ProfileView()
+          .tabItem {
+            Label("Profile", systemImage: "person.text.rectangle")
+          }
+      }
     }
   }
 }
