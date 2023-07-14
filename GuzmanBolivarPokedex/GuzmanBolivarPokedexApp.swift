@@ -11,11 +11,10 @@ import SwiftUI
 struct GuzmanBolivarPokedexApp: App {
   @StateObject var networkMonitor = NetworkMonitor()
 
-    var body: some Scene {
-        WindowGroup {
-            SplashScreen()
-            .environmentObject(networkMonitor)
-//          CustomNavBar()
-        }
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+        .environmentObject(networkMonitor)
     }
+  }
 }
