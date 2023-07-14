@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State var selection: PokeButton = PokeButton(button: TabButton(id: "Pepito"))
+  @State var selection: PokeButton = PokeTabItem.home.iconName
 
   var body: some View {
     CustomTabBarContainerView(selection: $selection) {
       Color.red
-        .pokeTabItem(tab: PokeButton(button: TabButton(id: "hehe")), selection: $selection)
+        .pokeTabItem(tab: PokeTabItem.home.iconName, selection: $selection)
       Color.blue
-        .pokeTabItem(tab: PokeButton(button: TabButton(id: "soso")), selection: $selection)
+        .pokeTabItem(tab: PokeTabItem.list.iconName, selection: $selection)
       Color.yellow
-        .pokeTabItem(tab: PokeButton(button: TabButton(id: "hihi")), selection: $selection)
+        .pokeTabItem(tab: PokeTabItem.profile.iconName, selection: $selection)
     }
   }
 }

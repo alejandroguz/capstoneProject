@@ -17,6 +17,7 @@
 		A91E357C2A469FA2000A64F1 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = A91E357B2A469FA2000A64F1 /* Readme.md */; };
 		A947CF562A5E281A008A0C51 /* CustomTabBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CF552A5E281A008A0C51 /* CustomTabBarContainerView.swift */; };
 		A947CF582A607819008A0C51 /* PokeTabItemPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CF572A607819008A0C51 /* PokeTabItemPreferenceKey.swift */; };
+		A947CF5A2A6107F7008A0C51 /* PokeTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CF592A6107F7008A0C51 /* PokeTabItem.swift */; };
 		A94A12402A3FC363007A203E /* GuzmanBolivarPokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */; };
 		A94A12422A3FC363007A203E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A12412A3FC363007A203E /* ContentView.swift */; };
 		A94A12442A3FC365007A203E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A94A12432A3FC365007A203E /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 		A91E357B2A469FA2000A64F1 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		A947CF552A5E281A008A0C51 /* CustomTabBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarContainerView.swift; sourceTree = "<group>"; };
 		A947CF572A607819008A0C51 /* PokeTabItemPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeTabItemPreferenceKey.swift; sourceTree = "<group>"; };
+		A947CF592A6107F7008A0C51 /* PokeTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeTabItem.swift; sourceTree = "<group>"; };
 		A94A123C2A3FC363007A203E /* GuzmanBolivarPokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuzmanBolivarPokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A94A123F2A3FC363007A203E /* GuzmanBolivarPokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuzmanBolivarPokedexApp.swift; sourceTree = "<group>"; };
 		A94A12412A3FC363007A203E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				A9A780462A5DDA8A00DDB86E /* CustomTabView.swift */,
 				A947CF552A5E281A008A0C51 /* CustomTabBarContainerView.swift */,
 				A947CF572A607819008A0C51 /* PokeTabItemPreferenceKey.swift */,
+				A947CF592A6107F7008A0C51 /* PokeTabItem.swift */,
 			);
 			path = CustomNavBar;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				A919867E2A45CAFE00DEC325 /* ProfileViewVM.swift in Sources */,
 				A91986702A453CF400DEC325 /* OnboardingView.swift in Sources */,
 				A94A126F2A3FD8FC007A203E /* ContentViewVM.swift in Sources */,
+				A947CF5A2A6107F7008A0C51 /* PokeTabItem.swift in Sources */,
 				A94A126D2A3FD8E8007A203E /* Networking.swift in Sources */,
 				A91986762A4567DE00DEC325 /* NetworkMonitor.swift in Sources */,
 			);
