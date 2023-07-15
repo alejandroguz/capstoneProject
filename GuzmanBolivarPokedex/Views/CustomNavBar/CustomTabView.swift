@@ -36,7 +36,7 @@ struct CustomTabView: View {
       }
       .frame(height: 40)
       .frame(maxWidth: .infinity)
-      .background(Color.green.edgesIgnoringSafeArea(.bottom))
+      .background(Color.white.edgesIgnoringSafeArea(.bottom))
     }
     .overlayPreferenceValue(TabButtonPreferenceKey.self) { preferences in
       GeometryReader { proxy in

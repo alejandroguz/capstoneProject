@@ -23,6 +23,7 @@ struct CustomTabBarContainerView<Content: View>: View {
       ZStack {
         content
       }
+      Spacer()
       CustomTabView(selection: $selection, tabArray: tabs)
     }
     .onPreferenceChange(PokeTabItemPreferenceKey.self) { item in

@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State var selection: PokeButton = PokeTabItem.home.iconName
+  @State var selection: PokeButton = PokeTabItem.list.iconName
 
   var body: some View {
     CustomTabBarContainerView(selection: $selection) {
-      Color.red
-        .pokeTabItem(tab: PokeTabItem.home.iconName, selection: $selection)
-      Color.blue
+      PokeList()
         .pokeTabItem(tab: PokeTabItem.list.iconName, selection: $selection)
-      Color.yellow
+      ProfileView()
         .pokeTabItem(tab: PokeTabItem.profile.iconName, selection: $selection)
     }
   }
@@ -29,21 +27,3 @@ struct ContentView_Previews: PreviewProvider {
       .previewInterfaceOrientation(.landscapeRight)
   }
 }
-
-//    TabView {
-//      OnboardingView()
-//        .tabItem {
-//          Label("Intro", systemImage: "info.square.fill")
-//            .foregroundColor(.white)
-//        }
-//
-//      PokeList()
-//        .tabItem {
-//          Label("List", systemImage: "list.bullet.rectangle.portrait")
-//        }
-//
-//      ProfileView()
-//        .tabItem {
-//          Label("Profile", systemImage: "person.text.rectangle")
-//        }
-//    }
